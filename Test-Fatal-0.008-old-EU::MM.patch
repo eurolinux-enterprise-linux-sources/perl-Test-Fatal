@@ -1,0 +1,30 @@
+--- Test-Fatal/Makefile.PL
++++ Test-Fatal/Makefile.PL
+@@ -4,7 +4,7 @@
+ 
+ 
+ 
+-use ExtUtils::MakeMaker 6.30;
++use ExtUtils::MakeMaker;
+ 
+ 
+ 
+@@ -17,7 +17,7 @@
+     "overload" => 0
+   },
+   "CONFIGURE_REQUIRES" => {
+-    "ExtUtils::MakeMaker" => "6.30"
++    "ExtUtils::MakeMaker" => "0"
+   },
+   "DISTNAME" => "Test-Fatal",
+   "EXE_FILES" => [],
+@@ -54,6 +54,9 @@
+ delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+   unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+ 
++delete $WriteMakefileArgs{LICENSE}
++  unless eval { ExtUtils::MakeMaker->VERSION(6.31) };
++
+ WriteMakefile(%WriteMakefileArgs);
+ 
+ 
